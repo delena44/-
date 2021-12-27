@@ -1,0 +1,27 @@
+{% extends 'index.html' -%}
+  {% block content -%}
+  {{ super() }}
+    <div>
+          <form class="container" method="post">
+            <div class="brand-title">Редактирование ссылки</div>
+            {% for msg in get_flashed_messages() -%}
+              <h3 class="flash">{{msg}}</h3>
+            {% endfor -%}
+            <div class="inputs">
+              <p><input class="input" type="text" name="psevdonim" value="{{link[2]}}" placeholder="Псевдоним"></p>
+              <p><input class="input" type="text" name="link" value="{{link[3]}}" placeholder="URL" disabled></p>
+              <p>
+                <label for="status">Вид ссылок
+                  <select id="status" name="status">
+                    <option value="{{link[4]}}" selected>{{link[4]}}</option>
+                    <option value="Публичная">Публичная</option>
+                    <option value="Общего доступа">Общего доступа</option>
+                    <option value="Приватная">Приватная</option>
+                  </select>
+              </label>
+              </p>
+              <input class="button" type="submit" value="Изменить">
+            </div>
+          </form>
+    </div>
+  {% endblock -%}

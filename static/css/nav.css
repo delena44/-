@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.nav {
+    margin: 0;
+	position: sticky;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	top: 0;
+    background: #42A5F5;
+}
+.nav__title {
+	margin: 0px 30px;
+}
+.nav__title a{
+	text-decoration: none;
+    color: #000;
+}
+.nav__item {
+	display: inline-block;
+	margin: 0px 30px;
+}
+.nav__item a{
+    text-decoration: none;
+    color: #000;
+}

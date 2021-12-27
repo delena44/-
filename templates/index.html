@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+	<link rel="stylesheet" href="{{url_for('static', filename='css/form.css')}}">
+	{% block title -%}
+		{% if title -%}
+    		<title>ShortLink - {{ title }}</title>
+		{% else -%}
+			<title>ShortLink</title>
+		{% endif %}
+	{% endblock -%}
+</head>
+<body>
+	{% block content -%}
+		{% block menu -%}
+    		<nav class="nav">
+				<div class="nav__title"><a href="/">Short Linker</a></div>
+				<ul class="nav__list">
+					{% for m in menu -%}
+						<li class="nav__item"><a href="{{m.url}}">{{m.name}}</a></li>
+					{% endfor -%}
+				</ul>
+			</nav>
+		{% endblock -%}
+
+		{% if title -%}
+    		<h1>{{ title }}</h1>
+		{% else -%}
+			<h1>ShortLink</h1>
+			<div>
+				<h2>Общие готовые ссылки</h2>
+				<ul>
+					{% for link in links %}
+						<li><a href="{{link[3]}}">{{link[3]}}</a> - {{link[2]}}</li>
+					  {% endfor -%}
+				</ul>
+			</div>
+		
+			<form class="container" action="/" method="post">
+				<div class="brand-title">Сократить ссылку</div>
+				{% for msg in get_flashed_messages() -%}
+				  <h3 class="flash">{{msg}}</h3>
+				{% endfor -%}
+				<div class="inputs">
+				  <p><input class="input" type="text" name="link" placeholder="URL"></p>
+				  <input class="button" type="submit" value="Сократить">
+				</div>
+			</form>
+		{% endif -%}
+	{% endblock -%}
+</body>
+</html>
